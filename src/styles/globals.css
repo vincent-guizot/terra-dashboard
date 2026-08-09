@@ -1,0 +1,43 @@
+/* ============================================================
+   TERRA DESIGN SYSTEM — ENTRY POINT
+   This file only wires things together. Actual tokens and rules
+   live in the split files below:
+     variables.css   -> color/breakpoint/radius/shadow/font tokens
+                        + light/dark semantic CSS variables
+     animations.css  -> tw-animate-css import + motion tokens
+   ============================================================ */
+@import "tailwindcss";
+
+/* Enable class-based dark mode: toggle by adding/removing `.dark` on <html> */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@import "./variables.css";
+@import "./animations.css";
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-surface-sunken);
+  color: var(--color-text-primary);
+}
+
+* {
+  border-color: var(--color-border-default);
+}
+
+/* Custom scrollbar for ScrollArea — Firefox uses scrollbar-color (set
+   inline via the component), this covers WebKit/Blink browsers with a
+   visible rounded thumb matching the reference mockup. */
+.terra-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.terra-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.terra-scrollbar::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary-300);
+  border-radius: 9999px;
+}
+.terra-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-primary-400);
+}

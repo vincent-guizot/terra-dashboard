@@ -1,0 +1,19 @@
+/* ============================================================
+   TERRA DESIGN SYSTEM — ANIMATIONS
+   Enter/exit transition utilities for overlays (Modal, Drawer,
+   MobileDrawer, Toast, ...). We deliberately use plain Tailwind
+   utility classes for motion — no Framer Motion, no JS animation
+   library — so every transition here is driven by CSS only.
+
+   `tw-animate-css` is the Tailwind v4-compatible successor to the
+   old `tailwindcss-animate` plugin (which only worked with v3's
+   JS config). It provides the `animate-in`, `animate-out`,
+   `fade-in`, `zoom-in-95`, `slide-in-from-*` utility classes used
+   throughout the overlay components.
+   ============================================================ */
+@import "tw-animate-css";
+
+@theme {
+  /* ---- Motion ---- */
+  --ease-terra: cubic-bezier(0.16, 1, 0.3, 1);
+}

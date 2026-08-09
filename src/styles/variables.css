@@ -1,0 +1,214 @@
+/* ============================================================
+   TERRA DESIGN SYSTEM — VARIABLES
+   Transcribed directly from the authoritative Terra Dashboard
+   Design System V1 document. No component should hardcode raw
+   hex values — always reference these tokens.
+
+   ARCHITECTURE NOTE — Primary vs Neutral:
+   The doc's "Primary" scale (950->50) is not a single hue ramp:
+   950-800 are neutral slate tones (dark surfaces), while 700-50
+   shift into vivid blue (buttons/active states). Because of that,
+   semantic surface/text/border tokens are mapped to a SEPARATE
+   Neutral/Slate scale (taken from the doc's Light/Dark Theme
+   sections) rather than to Primary -- otherwise borders and body
+   text would pick up a blue tint from Primary 100-300. Primary is
+   reserved for actual brand-colored elements: sidebar background,
+   buttons, active states, focus rings, links, "primary" badges.
+   ============================================================ */
+
+@theme {
+  /* ---- Breakpoints ----
+     Keep the standard sm/md/lg/xl names (the whole codebase uses
+     md:/lg:/xl: utilities) and only override their pixel values. */
+  --breakpoint-md: 48rem;   /* 768px  - tablet starts here */
+  --breakpoint-lg: 64rem;   /* 1024px - desktop starts here */
+  --breakpoint-xl: 90rem;   /* 1440px - wide starts here */
+
+  /* ---- Primary -- Navy Blue (brand color, 11 step) ---- */
+  --color-primary-950: #020617;
+  --color-primary-900: #0f172a;
+  --color-primary-800: #1e293b;
+  --color-primary-700: #1d4ed8;
+  --color-primary-600: #2563eb;
+  --color-primary-500: #3b82f6;
+  --color-primary-400: #60a5fa;
+  --color-primary-300: #93c5fd;
+  --color-primary-200: #bfdbfe;
+  --color-primary-100: #dbeafe;
+  --color-primary-50: #eff6ff;
+
+  /* ---- Neutral / Slate (UI surfaces, text, borders -- 11 step) ---- */
+  --color-neutral-950: #020617;
+  --color-neutral-900: #0f172a;
+  --color-neutral-800: #1e293b;
+  --color-neutral-700: #334155;
+  --color-neutral-600: #475569;
+  --color-neutral-500: #64748b;
+  --color-neutral-400: #94a3b8;
+  --color-neutral-300: #cbd5e1;
+  --color-neutral-200: #e2e8f0;
+  --color-neutral-100: #f1f5f9;
+  --color-neutral-50: #f8fafc;
+
+  /* ---- Semantic (4-tier: base / soft / border / text) ---- */
+  --color-success-500: #10b981;
+  --color-success-soft: #ecfdf5;
+  --color-success-border: #a7f3d0;
+  --color-success-text: #047857;
+
+  --color-warning-500: #f59e0b;
+  --color-warning-soft: #fffbeb;
+  --color-warning-border: #fde68a;
+  --color-warning-text: #b45309;
+
+  --color-danger-500: #ef4444;
+  --color-danger-600: #dc2626;
+  --color-danger-soft: #fef2f2;
+  --color-danger-border: #fecaca;
+  --color-danger-text: #b91c1c;
+
+  --color-info-500: #06b6d4;
+  --color-info-soft: #ecfeff;
+  --color-info-border: #a5f3fc;
+  --color-info-text: #0e7490;
+
+  --color-neutral-status-500: #64748b;
+  --color-neutral-status-soft: #f8fafc;
+  --color-neutral-status-border: #e2e8f0;
+  --color-neutral-status-text: #475569;
+
+  /* Legacy aliases some components still reference (-100/-700) so
+     existing badge/alert variants keep working during the
+     migration to the 4-tier tokens above. */
+  --color-success-100: var(--color-success-soft);
+  --color-success-700: var(--color-success-text);
+  --color-warning-100: var(--color-warning-soft);
+  --color-warning-700: var(--color-warning-text);
+  --color-danger-100: var(--color-danger-soft);
+  --color-danger-700: var(--color-danger-text);
+  --color-info-100: var(--color-info-soft);
+  --color-info-700: var(--color-info-text);
+
+  /* ---- Accents (8) ---- */
+  --color-accent-blue: #2563eb;
+  --color-accent-cyan: #06b6d4;
+  --color-accent-green: #10b981;
+  --color-accent-amber: #f59e0b;
+  --color-accent-orange: #f97316;
+  --color-accent-red: #ef4444;
+  --color-accent-pink: #ec4899;
+  --color-accent-purple: #8b5cf6;
+
+  /* ---- Radius scale ---- */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-3xl: 24px;
+
+  /* ---- Shadow scale (single-layer, per spec formula) ---- */
+  --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-sm: 0 2px 4px rgba(15, 23, 42, 0.05);
+  --shadow-md: 0 4px 12px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 8px 24px rgba(15, 23, 42, 0.1);
+  --shadow-xl: 0 16px 40px rgba(15, 23, 42, 0.12);
+
+  /* ---- Typography scale (font-size + paired line-height) ----
+     Tailwind v4 pairs `--text-<name>` with `--text-<name>--line-height`
+     to generate a `text-<name>` utility carrying both values. Font
+     weight is applied separately via font-bold/font-semibold/etc,
+     matching the doc's separate "Font Weights" section. */
+  --text-display: 36px;
+  --text-display--line-height: 40px;
+  --text-h1: 30px;
+  --text-h1--line-height: 36px;
+  --text-h2: 24px;
+  --text-h2--line-height: 32px;
+  --text-h3: 20px;
+  --text-h3--line-height: 28px;
+  --text-h4: 18px;
+  --text-h4--line-height: 24px;
+  --text-body: 14px;
+  --text-body--line-height: 20px;
+  --text-body-sm: 13px;
+  --text-body-sm--line-height: 18px;
+  --text-label: 12px;
+  --text-label--line-height: 16px;
+  --text-caption: 11px;
+  --text-caption--line-height: 16px;
+
+  /* ---- Typography ---- */
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  /* ---- Semantic surface tokens -- mapped to the Neutral scale
+         (not Primary -- see architecture note above), so bg-surface
+         / text-primary / border-default work and flip in dark mode
+         without ever tinting neutral UI chrome blue. ---- */
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-surface-sunken: var(--surface-sunken);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-disabled: var(--text-disabled);
+  --color-text-inverse: var(--text-inverse);
+  --color-border-default: var(--border-default);
+  --color-border-strong: var(--border-strong);
+  --color-border-subtle: var(--border-subtle);
+}
+
+/* ============================================================
+   Semantic layer -- light theme (default), per doc section 4
+   ============================================================ */
+:root {
+  --surface: #ffffff;
+  --surface-elevated: #f8fafc;
+  --surface-sunken: #f1f5f9;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+  --text-disabled: #94a3b8;
+  --text-inverse: #ffffff;
+  --border-default: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --border-subtle: #f1f5f9;
+  --input-background: #ffffff;
+  --input-border: #cbd5e1;
+  --input-focus: #2563eb;
+  --sidebar-hover: #172554;
+}
+
+/* ============================================================
+   Semantic layer -- dark theme, per doc section 5
+   ============================================================ */
+.dark {
+  --surface: #0f172a;
+  --surface-elevated: #1e293b;
+  --surface-sunken: #020617;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --text-disabled: #64748b;
+  --text-inverse: #0f172a;
+  --border-default: #334155;
+  --border-strong: #475569;
+  --border-subtle: #1e293b;
+  --input-background: #0f172a;
+  --input-border: #334155;
+  --input-focus: #3b82f6;
+  --sidebar-hover: #172554;
+}
+
+/* ============================================================
+   Gradients -- used sparingly for hero areas, promotional cards,
+   illustrations, and featured sections. Applied via the
+   `.gradient-*` utility classes below.
+   ============================================================ */
+.gradient-primary { background-image: linear-gradient(135deg, #0f172a, #2563eb); }
+.gradient-blue { background-image: linear-gradient(135deg, #1d4ed8, #60a5fa); }
+.gradient-purple { background-image: linear-gradient(135deg, #4f46e5, #8b5cf6); }
+.gradient-ocean { background-image: linear-gradient(135deg, #2563eb, #06b6d4); }
+.gradient-success { background-image: linear-gradient(135deg, #059669, #10b981); }
+.gradient-sunset { background-image: linear-gradient(135deg, #f97316, #f59e0b); }
