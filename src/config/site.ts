@@ -17,7 +17,8 @@ export const siteConfig = {
     // imported asset). LogoBox automatically renders the image when
     // `src` is set, and falls back to the Hexagon icon mark otherwise.
     icon: "hexagon",
-    src: undefined as string | undefined,
+    src: "public/logo/terra-icon-dark.png",
+    // src: undefined as string | undefined,
     alt: "Terra Dashboard logo",
   },
   footer: {
