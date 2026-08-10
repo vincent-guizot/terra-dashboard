@@ -14,7 +14,11 @@ export interface OverlayProps extends HTMLAttributes<HTMLDivElement> {
 export function Overlay({ className, blur = false, ...props }: OverlayProps) {
   return (
     <div
-      className={cn("fixed inset-0 z-40 bg-primary-950/40", blur && "backdrop-blur-sm", className)}
+      className={cn(
+        "fixed inset-0 z-40 bg-primary-950/40",
+        blur && "backdrop-blur-sm",
+        className,
+      )}
       {...props}
     />
   );

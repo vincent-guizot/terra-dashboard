@@ -19,11 +19,22 @@ const edgeStyle: Record<string, string> = {
   right: "env(safe-area-inset-right)",
 };
 
-export function SafeArea({ className, edges = ["top", "bottom", "left", "right"], style, ...props }: SafeAreaProps) {
+export function SafeArea({
+  className,
+  edges = ["top", "bottom", "left", "right"],
+  style,
+  ...props
+}: SafeAreaProps) {
   const padding = edges.reduce<Record<string, string>>((acc, edge) => {
     acc[`padding${edge[0].toUpperCase()}${edge.slice(1)}`] = edgeStyle[edge];
     return acc;
   }, {});
 
-  return <div className={cn(className)} style={{ ...padding, ...style }} {...props} />;
+  return (
+    <div
+      className={cn(className)}
+      style={{ ...padding, ...style }}
+      {...props}
+    />
+  );
 }

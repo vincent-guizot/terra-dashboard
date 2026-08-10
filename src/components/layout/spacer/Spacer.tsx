@@ -19,12 +19,22 @@ const sizeMap: Record<SpacerSize, number> = {
   "3xl": 64,
 };
 
-export function Spacer({ size = "md", axis = "vertical" }: { size?: SpacerSize; axis?: "vertical" | "horizontal" }) {
+export function Spacer({
+  size = "md",
+  axis = "vertical",
+}: {
+  size?: SpacerSize;
+  axis?: "vertical" | "horizontal";
+}) {
   const px = sizeMap[size];
   return (
     <div
       aria-hidden
-      style={axis === "vertical" ? { height: px, width: 1 } : { width: px, height: 1 }}
+      style={
+        axis === "vertical"
+          ? { height: px, width: 1 }
+          : { width: px, height: 1 }
+      }
     />
   );
 }

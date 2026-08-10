@@ -18,7 +18,13 @@ export interface MobileDrawerProps {
   widthClassName?: string;
 }
 
-export function MobileDrawer({ open, onClose, children, side = "left", widthClassName = "w-72" }: MobileDrawerProps) {
+export function MobileDrawer({
+  open,
+  onClose,
+  children,
+  side = "left",
+  widthClassName = "w-72",
+}: MobileDrawerProps) {
   if (!open) return null;
 
   return createPortal(
@@ -28,7 +34,9 @@ export function MobileDrawer({ open, onClose, children, side = "left", widthClas
         className={cn(
           "absolute top-0 z-50 h-full max-w-full animate-in",
           widthClassName,
-          side === "left" ? "left-0 slide-in-from-left" : "right-0 slide-in-from-right"
+          side === "left"
+            ? "left-0 slide-in-from-left"
+            : "right-0 slide-in-from-right",
         )}
       >
         {children}
@@ -41,6 +49,6 @@ export function MobileDrawer({ open, onClose, children, side = "left", widthClas
         <X className="size-4" />
       </button>
     </div>,
-    document.body
+    document.body,
   );
 }

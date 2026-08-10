@@ -1,1 +1,6 @@
-export { Sidebar, SidebarContent, type SidebarNavItem, type SidebarSectionConfig } from "./Sidebar";
+export {
+  Sidebar,
+  SidebarContent,
+  type SidebarNavItem,
+  type SidebarSectionConfig,
+} from "./Sidebar";

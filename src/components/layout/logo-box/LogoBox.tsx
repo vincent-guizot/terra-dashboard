@@ -24,7 +24,13 @@ const textSizeMap = { sm: "text-xs", md: "text-sm", lg: "text-lg" };
  * instead of the default Hexagon icon mark — no component code needs
  * to change.
  */
-export function LogoBox({ variant = "full", size = "md", tone = "dark", className, textClassName }: LogoBoxProps) {
+export function LogoBox({
+  variant = "full",
+  size = "lg",
+  tone = "dark",
+  className,
+  textClassName,
+}: LogoBoxProps) {
   const { logo, appName, appShortName } = siteConfig;
   const markSize = markSizeMap[size];
   const textSize = textSizeMap[size];
@@ -33,12 +39,25 @@ export function LogoBox({ variant = "full", size = "md", tone = "dark", classNam
   return (
     <div className={cn("flex items-center gap-2 overflow-hidden", className)}>
       {logo.src ? (
-        <img src={logo.src} alt={logo.alt} className={cn(markSize, "shrink-0 object-contain")} />
+        <img
+          src={logo.src}
+          alt={logo.alt}
+          className={cn(markSize, "shrink-0 object-contain")}
+        />
       ) : (
-        <Hexagon className={cn(markSize, "shrink-0 fill-primary-500 text-primary-300")} />
+        <Hexagon
+          className={cn(markSize, "shrink-0 fill-primary-500 text-primary-300")}
+        />
       )}
       {variant === "full" && (
-        <span className={cn("truncate font-semibold", textSize, textTone, textClassName)}>
+        <span
+          className={cn(
+            "truncate font-semibold",
+            textSize,
+            textTone,
+            textClassName,
+          )}
+        >
           {size === "lg" ? appName : appShortName}
         </span>
       )}

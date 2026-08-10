@@ -1,1 +1,5 @@
-export { SidebarSubmenu, type SidebarSubmenuProps, type SidebarSubmenuChild } from "./SidebarSubmenu";
+export {
+  SidebarSubmenu,
+  type SidebarSubmenuProps,
+  type SidebarSubmenuChild,
+} from "./SidebarSubmenu";

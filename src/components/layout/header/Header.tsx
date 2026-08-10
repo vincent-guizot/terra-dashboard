@@ -1,4 +1,12 @@
-import { Bell, Menu, MessageSquare, Moon, Sun, Monitor, Search } from "lucide-react";
+import {
+  Bell,
+  Menu,
+  MessageSquare,
+  Moon,
+  Sun,
+  Monitor,
+  Search,
+} from "lucide-react";
 import { Avatar } from "@/components/ui/avatar";
 import { Kbd } from "@/components/ui/kbd";
 import { DropdownMenu } from "@/components/ui/dropdown-menu";
@@ -7,7 +15,11 @@ import { useSidebar } from "@/context/SidebarContext";
 import { useTheme } from "@/context/ThemeContext";
 import { cn } from "@/lib/utils";
 
-export function Header({ onOpenCommandMenu }: { onOpenCommandMenu?: () => void }) {
+export function Header({
+  onOpenCommandMenu,
+}: {
+  onOpenCommandMenu?: () => void;
+}) {
   const { setMobileOpen } = useSidebar();
   const { theme, setTheme } = useTheme();
 
@@ -39,12 +51,28 @@ export function Header({ onOpenCommandMenu }: { onOpenCommandMenu?: () => void }
         <DropdownMenu
           align="end"
           trigger={
-            <IconButton variant="ghost" icon={<ThemeIcon className="size-4" />} aria-label="Toggle theme" />
+            <IconButton
+              variant="ghost"
+              icon={<ThemeIcon className="size-4" />}
+              aria-label="Toggle theme"
+            />
           }
           items={[
-            { label: "Light", icon: <Sun className="size-4" />, onClick: () => setTheme("light") },
-            { label: "Dark", icon: <Moon className="size-4" />, onClick: () => setTheme("dark") },
-            { label: "System", icon: <Monitor className="size-4" />, onClick: () => setTheme("system") },
+            {
+              label: "Light",
+              icon: <Sun className="size-4" />,
+              onClick: () => setTheme("light"),
+            },
+            {
+              label: "Dark",
+              icon: <Moon className="size-4" />,
+              onClick: () => setTheme("dark"),
+            },
+            {
+              label: "System",
+              icon: <Monitor className="size-4" />,
+              onClick: () => setTheme("system"),
+            },
           ]}
         />
         <IconButton
@@ -52,17 +80,29 @@ export function Header({ onOpenCommandMenu }: { onOpenCommandMenu?: () => void }
           icon={
             <span className="relative">
               <Bell className="size-4" />
-              <span className={cn("absolute -right-0.5 -top-0.5 size-2 rounded-full bg-danger-500")} />
+              <span
+                className={cn(
+                  "absolute -right-0.5 -top-0.5 size-2 rounded-full bg-danger-500",
+                )}
+              />
             </span>
           }
           aria-label="Notifications"
         />
-        <IconButton variant="ghost" icon={<MessageSquare className="size-4" />} aria-label="Messages" />
+        <IconButton
+          variant="ghost"
+          icon={<MessageSquare className="size-4" />}
+          aria-label="Messages"
+        />
         <div className="ml-1 hidden items-center gap-2 border-l border-border-default pl-3 sm:flex">
           <Avatar name="Vincent G." size="sm" />
           <div className="hidden text-left lg:block">
-            <p className="text-sm font-medium leading-tight text-text-primary">Vincent G.</p>
-            <p className="text-xs leading-tight text-text-muted">Administrator</p>
+            <p className="text-sm font-medium leading-tight text-text-primary">
+              Vincent G.
+            </p>
+            <p className="text-xs leading-tight text-text-muted">
+              Administrator
+            </p>
           </div>
         </div>
       </div>

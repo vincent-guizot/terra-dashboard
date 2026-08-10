@@ -37,6 +37,8 @@ describe("LogoBox", () => {
     const img = container.querySelector("img");
     expect(img).toBeInTheDocument();
     expect(img).toHaveAttribute("src", "/company-logo.svg");
-    expect(container.querySelector("svg.lucide-hexagon")).not.toBeInTheDocument();
+    expect(
+      container.querySelector("svg.lucide-hexagon"),
+    ).not.toBeInTheDocument();
   });
 });

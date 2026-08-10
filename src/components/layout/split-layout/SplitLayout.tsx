@@ -13,8 +13,18 @@ export function SplitLayout({
   className?: string;
 }) {
   return (
-    <div className={cn("flex h-full overflow-hidden rounded-lg border border-border-default", className)}>
-      <div className={cn("shrink-0 overflow-y-auto border-r border-border-default bg-surface", leftWidth)}>
+    <div
+      className={cn(
+        "flex h-full overflow-hidden rounded-lg border border-border-default",
+        className,
+      )}
+    >
+      <div
+        className={cn(
+          "shrink-0 overflow-y-auto border-r border-border-default bg-surface",
+          leftWidth,
+        )}
+      >
         {left}
       </div>
       <div className="flex-1 overflow-y-auto bg-surface">{right}</div>

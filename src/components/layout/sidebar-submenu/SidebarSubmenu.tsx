@@ -22,7 +22,12 @@ export interface SidebarSubmenuProps {
   defaultOpen?: boolean;
 }
 
-export function SidebarSubmenu({ label, icon, children, defaultOpen = false }: SidebarSubmenuProps) {
+export function SidebarSubmenu({
+  label,
+  icon,
+  children,
+  defaultOpen = false,
+}: SidebarSubmenuProps) {
   const [open, setOpen] = useState(defaultOpen);
 
   return (
@@ -33,7 +38,9 @@ export function SidebarSubmenu({ label, icon, children, defaultOpen = false }: S
       >
         {icon && <span className="shrink-0">{icon}</span>}
         <span className="flex-1 text-left">{label}</span>
-        <ChevronDown className={cn("size-4 transition-transform", open && "rotate-180")} />
+        <ChevronDown
+          className={cn("size-4 transition-transform", open && "rotate-180")}
+        />
       </button>
       {open && (
         <div className="ml-8 mt-1 flex flex-col gap-0.5 border-l border-neutral-800 pl-3">
@@ -44,7 +51,7 @@ export function SidebarSubmenu({ label, icon, children, defaultOpen = false }: S
               className={({ isActive }) =>
                 cn(
                   "rounded-md px-2 py-1.5 text-sm text-neutral-400 hover:bg-[var(--sidebar-hover)] hover:text-white",
-                  isActive && "bg-primary-700 text-white"
+                  isActive && "bg-primary-700 text-white",
                 )
               }
             >

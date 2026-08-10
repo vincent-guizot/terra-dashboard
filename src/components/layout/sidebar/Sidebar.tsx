@@ -5,7 +5,10 @@ import { cn } from "@/lib/utils";
 import { useSidebar } from "@/context/SidebarContext";
 import { LogoBox } from "@/components/layout/logo-box";
 import { SidebarSection } from "@/components/layout/sidebar-section";
-import { SidebarSubmenu, type SidebarSubmenuChild } from "@/components/layout/sidebar-submenu";
+import {
+  SidebarSubmenu,
+  type SidebarSubmenuChild,
+} from "@/components/layout/sidebar-submenu";
 import { MobileDrawer } from "@/components/layout/mobile-drawer";
 
 export interface SidebarNavItem {
@@ -21,7 +24,13 @@ export interface SidebarSectionConfig {
   items: SidebarNavItem[];
 }
 
-function NavItem({ item, collapsed }: { item: SidebarNavItem; collapsed: boolean }) {
+function NavItem({
+  item,
+  collapsed,
+}: {
+  item: SidebarNavItem;
+  collapsed: boolean;
+}) {
   if (item.children) {
     // "Sidebar with Submenu" pattern — delegated to the standalone SidebarSubmenu component.
     if (collapsed) return null;
@@ -38,7 +47,7 @@ function NavItem({ item, collapsed }: { item: SidebarNavItem; collapsed: boolean
       className={({ isActive }) =>
         cn(
           "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-neutral-50/90 hover:bg-[var(--sidebar-hover)] hover:text-white",
-          isActive && "bg-primary-700 text-white shadow-sm"
+          isActive && "bg-primary-700 text-white shadow-sm",
         )
       }
     >
@@ -53,13 +62,23 @@ function NavItem({ item, collapsed }: { item: SidebarNavItem; collapsed: boolean
   );
 }
 
-export function SidebarContent({ sections, collapsed }: { sections: SidebarSectionConfig[]; collapsed: boolean }) {
+export function SidebarContent({
+  sections,
+  collapsed,
+}: {
+  sections: SidebarSectionConfig[];
+  collapsed: boolean;
+}) {
   const { toggleCollapsed, setMobileOpen } = useSidebar();
   return (
     <div className="flex h-full flex-col bg-primary-950 text-white">
       <div className="flex items-center justify-between gap-2 px-4 py-4">
         <LogoBox variant={collapsed ? "icon" : "full"} tone="dark" />
-        <button onClick={() => setMobileOpen(false)} className="text-neutral-400 hover:text-white md:hidden" aria-label="Close menu">
+        <button
+          onClick={() => setMobileOpen(false)}
+          className="text-neutral-400 hover:text-white md:hidden"
+          aria-label="Close menu"
+        >
           <X className="size-5" />
         </button>
       </div>
@@ -78,7 +97,11 @@ export function SidebarContent({ sections, collapsed }: { sections: SidebarSecti
         onClick={toggleCollapsed}
         className="hidden items-center gap-2 border-t border-neutral-800 px-4 py-3 text-xs text-neutral-400 hover:text-white md:flex"
       >
-        {collapsed ? <ChevronsRight className="size-4" /> : <ChevronsLeft className="size-4" />}
+        {collapsed ? (
+          <ChevronsRight className="size-4" />
+        ) : (
+          <ChevronsLeft className="size-4" />
+        )}
         {!collapsed && "Collapse"}
       </button>
     </div>
@@ -94,14 +117,18 @@ export function Sidebar({ sections }: { sections: SidebarSectionConfig[] }) {
       <aside
         className={cn(
           "sticky top-0 hidden h-screen shrink-0 transition-[width] duration-200 md:block",
-          collapsed ? "w-[72px]" : "w-64"
+          collapsed ? "w-[72px]" : "w-64",
         )}
       >
         <SidebarContent sections={sections} collapsed={collapsed} />
       </aside>
 
       {/* Mobile navigation — built on the standalone MobileDrawer primitive */}
-      <MobileDrawer open={mobileOpen} onClose={() => setMobileOpen(false)} widthClassName="w-72">
+      <MobileDrawer
+        open={mobileOpen}
+        onClose={() => setMobileOpen(false)}
+        widthClassName="w-72"
+      >
         <SidebarContent sections={sections} collapsed={false} />
       </MobileDrawer>
     </>

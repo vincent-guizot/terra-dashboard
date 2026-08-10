@@ -1,1 +1,4 @@
-export { SectionContainer, type SectionContainerProps } from "./SectionContainer";
+export {
+  SectionContainer,
+  type SectionContainerProps,
+} from "./SectionContainer";

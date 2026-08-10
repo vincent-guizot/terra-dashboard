@@ -14,11 +14,18 @@ export interface SidebarSectionProps {
   className?: string;
 }
 
-export function SidebarSection({ title, children, collapsed, className }: SidebarSectionProps) {
+export function SidebarSection({
+  title,
+  children,
+  collapsed,
+  className,
+}: SidebarSectionProps) {
   return (
     <div className={cn("space-y-1", className)}>
       {title && !collapsed && (
-        <p className="px-3 pb-1 text-[10px] font-semibold uppercase tracking-wider text-neutral-400/70">{title}</p>
+        <p className="px-3 pb-1 text-[10px] font-semibold uppercase tracking-wider text-neutral-400/70">
+          {title}
+        </p>
       )}
       {children}
     </div>

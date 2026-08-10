@@ -14,14 +14,30 @@ const colsMap = {
 };
 const gapMap = { sm: "gap-3", md: "gap-4", lg: "gap-6" };
 
-export function ContentGrid({ className, cols = 3, gap = "md", ...props }: ContentGridProps) {
-  return <div className={cn("grid", colsMap[cols], gapMap[gap], className)} {...props} />;
-}
-
-export function AutoGrid({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
+export function ContentGrid({
+  className,
+  cols = 3,
+  gap = "md",
+  ...props
+}: ContentGridProps) {
   return (
     <div
-      className={cn("grid gap-4 [grid-template-columns:repeat(auto-fit,minmax(220px,1fr))]", className)}
+      className={cn("grid", colsMap[cols], gapMap[gap], className)}
+      {...props}
+    />
+  );
+}
+
+export function AutoGrid({
+  className,
+  ...props
+}: HTMLAttributes<HTMLDivElement>) {
+  return (
+    <div
+      className={cn(
+        "grid gap-4 [grid-template-columns:repeat(auto-fit,minmax(220px,1fr))]",
+        className,
+      )}
       {...props}
     />
   );
