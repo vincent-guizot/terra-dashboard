@@ -91,7 +91,7 @@ export function CustomersPage() {
         description="Manage your customer relationships and accounts."
         breadcrumbs={[{ label: "Dashboard", href: "/dashboard" }, { label: "Customers" }]}
         actions={
-          <Button>
+          <Button onClick={() => navigate("/customers/new")}>
             <Plus className="size-4" /> Add Customer
           </Button>
         }

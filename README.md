@@ -185,52 +185,31 @@ The sidebar is grouped into four sections matching the starter-kit purpose of th
 
 ### Routing
 
-All routes are defined in `src/routes/index.tsx` using `createBrowserRouter`, grouped by layout:
+All routes are defined in `src/routes/index.tsx` using `createBrowserRouter`, grouped by layout. Every page is
+lazy-loaded (`React.lazy` + a shared `<Suspense>` fallback) so each route ships its own JS chunk instead of one
+large upfront bundle — layouts stay eager since they render on every navigation.
 
 - **`DashboardLayout`** (protected via `ProtectedRoute`, currently a dummy pass-through guard) - Home, Customers
-  (+ detail), Products (+ detail), Orders (+ detail), Projects (+ detail), Invoices (+ detail), Tasks, Analytics,
+  (+ detail, + `Add Customer`), Products (+ detail, + `Add Product`), Orders (+ detail, + `Add Order`), Projects
+  (+ detail, + `Add Project`), Invoices (+ detail, + `Add Invoice`), Tasks (+ `Add Task`), Analytics,
   Calendar, Messages, Notifications, Profile, Settings (nested tabs: general/security/notifications/billing),
   the Components/Layout catalog index + detail pages
 - **`AuthLayout`** (public) - Login, Register, Forgot Password, Reset Password, Onboarding
 - **`BlankLayout`** - 404, Error
 
+Each "Add" page (`/products/new`, `/customers/new`, `/orders/new`, `/projects/new`, `/invoices/new`,
+`/tasks/new`) is a validated form that writes into the corresponding in-memory mock array in
+`src/lib/mock-data.ts` and shows a success toast on submit — replace the simulated save with a real API call
+once a backend exists.
+
 Swap the dummy check in `src/routes/ProtectedRoute.tsx` for real auth state when a backend is ready.
 
 ### Known issues fixed since the first delivery
 
-- **Breakpoint override wiped the default Tailwind scale.** `variables.css` used to reset `--breakpoint-*` to
-  `initial` before defining custom names, which silently broke every `md:`/`lg:`/`xl:` utility in the app
-  (the root cause of the sidebar never showing in its desktop/expanded form, and grids collapsing to a single
-  column at any viewport width). Fixed by keeping the standard breakpoint names and only overriding their
-  pixel values.
-- **Mobile sidebar drawer was unclickable.** `Overlay`'s explicit `z-40` was painting above the drawer panel
-  (which had no explicit `z-index`), since positioned siblings with `z-index: auto` stack below any sibling
-  with a positive explicit `z-index` regardless of DOM order. Fixed by giving the panel `z-50`.
-- **Sidebar's mobile/tablet/desktop breakpoint was inconsistent, then later revised.** Originally split across
-  `md:`/`lg:` inconsistently, briefly standardized to `lg` (1024px) for all three tiers, then finally moved to
-  `md` (768px) once the doc's breakpoint usage guidance (Tablet = persistent collapsed sidebar, not a hidden
-  drawer) was available — see "Sidebar responsive behavior" above for the current, final behavior.
-- **Sidebar didn't scroll and could overflow past 100vh.** The nav's `flex-1 overflow-y-auto` needs an
-  explicit `min-h-0` to actually scroll inside a flex column (the classic flexbox `min-height: auto` gotcha) —
-  without it the container just grows past the viewport instead of scrolling. Fixed.
-- **`animate-in`/`fade-in`/`slide-in-from-*` classes did nothing.** These utilities come from the
-  `tw-animate-css` package, which was referenced in JSX but never installed/imported. Fixed by installing it
-  and importing it from `src/styles/animations.css`.
-- **Color system went through two revisions before landing on the authoritative doc.** First a guessed hex
-  scale, then a pixel-sampled approximation from a reference mockup screenshot, and finally the exact values
-  transcribed from the Terra Dashboard Design System V1 document (see "Foundations" above) — including the
-  Primary/Neutral split, the 4-tier semantic colors, and the corrected sidebar active/hover colors
-  (`#1D4ED8` / `#172554`, no longer an approximation).
-- **Reference-mockup alignment pass (spacing, dividers, header search, scrollbar):**
-  - `Spacer` now uses the named scale from the mockup (`xs`=4px, `sm`=8px, `md`=16px, `lg`=24px, `xl`=32px,
-    `2xl`=48px, `3xl`=64px) instead of an arbitrary numeric multiplier.
-  - `Divider` gained the `inset` variant shown in the mockup (alongside solid/dashed/dotted).
-  - The header search bar now shows a real `⌘K` `Kbd` badge pinned to the right edge, matching the mockup,
-    instead of it being baked into the placeholder text.
-  - `ScrollArea` now has a visible, rounded, colored scrollbar thumb (via a `.terra-scrollbar` WebKit rule
-    plus the Firefox `scrollbar-color` property), matching the mockup's scrollbar illustration.
-  - `PageContainer` and `SectionContainer` padding now match the mockup's documented spec exactly
-    (`px-6 py-6 lg:px-8 lg:py-8` and `px-6 py-5` respectively).
+See [`CHANGELOG.md`](./CHANGELOG.md) for the full, dated history of fixes and
+revisions — including the breakpoint override bug, the mobile drawer z-index
+fix, the sidebar breakpoint standardization, the color system revisions, the
+logo path/size bug fix, and the code-splitting pass.
 
 ## Testing
 

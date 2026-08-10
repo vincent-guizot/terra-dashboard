@@ -26,7 +26,7 @@ const textSizeMap = { sm: "text-xs", md: "text-sm", lg: "text-lg" };
  */
 export function LogoBox({
   variant = "full",
-  size = "lg",
+  size = "md",
   tone = "dark",
   className,
   textClassName,

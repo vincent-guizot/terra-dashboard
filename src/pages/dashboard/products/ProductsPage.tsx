@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Plus, MoreVertical, Pencil, Trash2 } from "lucide-react";
 import { PageHeader } from "@/components/layout/page-header";
 import { Button } from "@/components/ui/button";
@@ -13,6 +14,7 @@ const statusVariant = { "In Stock": "success", "Low Stock": "warning", "Out of S
 
 export function ProductsPage() {
   const [page, setPage] = useState(1);
+  const navigate = useNavigate();
 
   const columns: DataTableColumn<Product>[] = [
     { key: "name", header: "Product", render: (row) => <span className="font-medium">{row.name}</span> },
@@ -47,7 +49,7 @@ export function ProductsPage() {
         description="Manage your product catalog and inventory."
         breadcrumbs={[{ label: "Dashboard", href: "/dashboard" }, { label: "Products" }]}
         actions={
-          <Button>
+          <Button onClick={() => navigate("/products/new")}>
             <Plus className="size-4" /> Add Product
           </Button>
         }

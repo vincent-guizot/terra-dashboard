@@ -16,7 +16,7 @@ export function ProjectsPage() {
         description="Track progress across all active projects."
         breadcrumbs={[{ label: "Dashboard", href: "/dashboard" }, { label: "Projects" }]}
         actions={
-          <Button>
+          <Button onClick={() => navigate("/projects/new")}>
             <Plus className="size-4" /> New Project
           </Button>
         }

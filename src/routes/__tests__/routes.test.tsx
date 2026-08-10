@@ -86,8 +86,12 @@ describe("App routing", () => {
   it("renders the Components index page listing all 6 categories", async () => {
     await router.navigate("/components");
     renderApp();
-    await waitFor(() => expect(screen.getAllByText("Components").length).toBeGreaterThan(0));
-    expect(screen.getAllByText("Button").length).toBeGreaterThan(0);
+    // Wait on "Button" (unique to the loaded page's catalog list) rather than
+    // "Components", which also matches the Sidebar nav item that renders
+    // immediately — waiting on the shared text would resolve before the
+    // lazy-loaded ComponentsIndexPage chunk has actually mounted.
+    await waitFor(() => expect(screen.getAllByText("Button").length).toBeGreaterThan(0));
+    expect(screen.getAllByText("Components").length).toBeGreaterThan(0);
   });
 
   it("renders a single component's catalog detail page", async () => {

@@ -1,4 +1,5 @@
 import { Plus } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { PageHeader } from "@/components/layout/page-header";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -35,6 +36,7 @@ const team = [
 ];
 
 export function TasksPage() {
+  const navigate = useNavigate();
   return (
     <div>
       <PageHeader
@@ -42,7 +44,7 @@ export function TasksPage() {
         description="Kanban board for day-to-day work."
         breadcrumbs={[{ label: "Dashboard", href: "/dashboard" }, { label: "Tasks" }]}
         actions={
-          <Button>
+          <Button onClick={() => navigate("/tasks/new")}>
             <Plus className="size-4" /> New Task
           </Button>
         }

@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Plus } from "lucide-react";
 import { PageHeader } from "@/components/layout/page-header";
+import { Button } from "@/components/ui/button";
 import { DatePicker } from "@/components/ui/date-picker";
 import { Badge } from "@/components/ui/badge";
 import { Pagination } from "@/components/ui/pagination";
@@ -36,6 +38,11 @@ export function OrdersPage() {
         title="Orders"
         description="Track and manage customer orders."
         breadcrumbs={[{ label: "Dashboard", href: "/dashboard" }, { label: "Orders" }]}
+        actions={
+          <Button onClick={() => navigate("/orders/new")}>
+            <Plus className="size-4" /> Add Order
+          </Button>
+        }
       />
       <div className="mb-4 max-w-xs">
         <DatePicker value={date} onChange={setDate} placeholder="Filter by date" />

@@ -4,10 +4,11 @@ import { PageHeader } from "@/components/layout/page-header";
 import { ContentGrid } from "@/components/layout/content-grid";
 import { StatCard } from "@/components/composite/stat-card";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Pagination } from "@/components/ui/pagination";
 import { DataTable, type DataTableColumn } from "@/components/composite/data-table";
 import { invoices, type Invoice } from "@/lib/mock-data";
-import { Receipt, CircleDollarSign, AlertTriangle } from "lucide-react";
+import { Receipt, CircleDollarSign, AlertTriangle, Plus } from "lucide-react";
 
 const statusVariant = { Paid: "success", Unpaid: "warning", Overdue: "danger" } as const;
 
@@ -38,6 +39,11 @@ export function InvoicesPage() {
         title="Invoices"
         description="Track billing and payment status."
         breadcrumbs={[{ label: "Dashboard", href: "/dashboard" }, { label: "Invoices" }]}
+        actions={
+          <Button onClick={() => navigate("/invoices/new")}>
+            <Plus className="size-4" /> Add Invoice
+          </Button>
+        }
       />
       <ContentGrid cols={3} className="mb-6">
         <StatCard label="Total Billed" value="$2,530.00" icon={<Receipt className="size-5" />} />

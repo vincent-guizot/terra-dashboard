@@ -17,12 +17,12 @@ export const siteConfig = {
     // imported asset). LogoBox automatically renders the image when
     // `src` is set, and falls back to the Hexagon icon mark otherwise.
     icon: "hexagon",
-    src: "public/logo/terra-icon-dark.png",
+    src: "/logo/terra-icon-dark.png",
     // src: undefined as string | undefined,
     alt: "Terra Dashboard logo",
   },
   footer: {
-    copyright: `© ${new Date().getFullYear()} Terra Dashboard. All rights reserved.`,
+    copyright: `© ${new Date().getFullYear()} Terra Dashboard by Vincent Sadino G. All rights reserved.`,
   },
   social: {
     twitter: "https://twitter.com",
